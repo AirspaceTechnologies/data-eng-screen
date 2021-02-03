@@ -3,7 +3,7 @@
 ### Problem Space
 At Airspace, we have a number of microservices that create data. We need this data to be extracted and transformed into tables and views that make sense to end users and are easy to access. Taking disparate data and denormalizing it is a very common practice and candidates should have experience with this process.
 ### Goals
-The goal of this screen is to create a denormalized table or view in a cloud hosted database. A free heroku db is totally fine. All times in the CSV files are in UTC and not local time. The table or view should have the following columns:
+The goal of this screen is to *programmatically* load the provided tables into a cloud hosted database (a free heroku db is totally fine), and then create a denormalized table or view with the following columns (note: all times in the CSV files are in UTC and not local time):
 ```
 order_id, company_id, origin_city, destination_city, pick_up_time_local, delivery_time_local, minutes_to_pickup, order_type, total_drive_distance
 ```
@@ -29,4 +29,4 @@ order_id, company_id, origin_city, destination_city, pick_up_time_local, deliver
 A query should be provided that will return the order with the longest distance between the pickup and delivery locations. 
 
 ### Submision
-DB credentials should be provided as well as required queries. 
+DB credentials, code used to load tables & build denormalized table/view, as well as required querie(s) to satisfy the additional requirement. 
