@@ -16,12 +16,12 @@ warehouse = os.getenv("SF_WAREHOUSE")
 database = os.getenv("SF_DATABASE")
 role = os.getenv("SF_ROLE")
 snowflake_etl_service = {
-    "username": os.getenv("SF_ETL_SERVICE_USER"),
-    "decryption_key": os.getenv("SF_ETL_SERVICE_KEY_PWD"),
+    "username": os.getenv("SF_USER"),
+    "decryption_key": os.getenv("SF_KEY_PWD"),
     "account": os.getenv("SF_ACCOUNT"),
-    "sf_key": os.getenv("SF_ETL_SERVICE_KEY").replace("\\n", "\n"),
+    "sf_key": os.getenv("SF_KEY").replace("\\n", "\n"),
 }
-schema = "PT"
+schema = "FLIGHT_DATA"
 
 
 def engine(
@@ -65,25 +65,16 @@ def load_flights_to_snowflake(local_path, table_name):
     cs = sf_engine.connect()
 
     try:
-        logger.info(f"Creating staging table {table_name}...")
-        cs.execute(
-            f"""
-            CREATE OR REPLACE TABLE tech_screening.flight_data.{table_name} (
-                raw VARIANT
-            )
-        """
-        )
-
         logger.info("Loading JSON into staging table...")
         cs.execute(
             f"""
-            PUT file://{local_path} @TECH_SCREENING.FLIGHT_DATA.{table_name}
+            PUT file://{local_path} @FLIGHT_DATA_STAGE.{table_name}
         """
         )
         cs.execute(
             f"""
-            COPY INTO TECH_SCREENING.FLIGHT_DATA.{table_name}
-            FROM @TECH_SCREENING.FLIGHT_DATA.{table_name}
+            COPY INTO FLIGHT_DATA.{table_name}
+            FROM @FLIGHT_DATA_STAGE.{table_name}
             FILE_FORMAT=(TYPE=JSON STRIP_OUTER_ARRAY=TRUE)
         """
         )
