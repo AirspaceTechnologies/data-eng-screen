@@ -1,7 +1,7 @@
-select
-    flight_date::date as flight_date,
-    flight_status::string as status,
-    departure.airport::string as departure_airport,
-    arrival.airport::string as arrival_airport,
-    airline.name::string as airline_name
-from {{ source('flight_data', 'stg_flights') }}
+SELECT
+    flight_date::date AS flight_date,
+    flight_status::string AS status,
+    departure.airport::string AS departure_airport,
+    arrival.airport::string AS arrival_airport,
+    airline.name::string AS airline_name
+FROM {{ source('flight_data', 'stg_flights') }}
