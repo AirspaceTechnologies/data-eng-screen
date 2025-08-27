@@ -1,0 +1,6 @@
+apache-airflow==2.6.3
+google-cloud-storage
+dbt-core
+dbt-snowflake==1.9.2
+snowflake-sqlalchemy>=1.7.6
+requests>=2.32.4
