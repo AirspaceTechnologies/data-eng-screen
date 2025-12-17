@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: flight_data
+    description: Raw flight data loaded from AviationStack API
+    database: "{{ env_var('SF_DATABASE') }}"
+    schema: FLIGHT_DATA
+    tables:
+      - name: stg_flights
+        description: Staging table for raw flight data from AviationStack API
+        columns:
+          - name: flight_date
+            description: Date of the flight
+          - name: flight_status
+            description: Current status of the flight (scheduled, active, landed, etc.)
+          - name: departure
+            description: JSON object containing departure airport information
+          - name: arrival
+            description: JSON object containing arrival airport information
+          - name: airline
+            description: JSON object containing airline information
+          - name: load_timestamp
+            description: Timestamp when data was loaded into Snowflake
