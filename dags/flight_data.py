@@ -14,15 +14,17 @@ Schedule: Daily at 6 AM UTC
 """
 
 from datetime import datetime, timedelta
+
 from airflow import DAG
-from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator
 
 # Import your custom modules
 # from src import aviation_stack, gcs, snowflake
 
 
-# TODO: Configure default args
+# TODO: Review the default_args and DAG configuration below and adjust any settings you think 
+# should be different for this use case. Be prepared to explain your choices.
 default_args = {
     "owner": "data-team",
     "depends_on_past": False,
@@ -33,7 +35,6 @@ default_args = {
     "retry_delay": timedelta(minutes=5),
 }
 
-# TODO: Create the DAG
 dag = DAG(
     "flight_data_pipeline",
     default_args=default_args,
