@@ -20,8 +20,7 @@ from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 
 # Import your custom modules
-# from src import aviation_stack, gcs, snowflake
-
+from src import aviation_stack, gcs, snowflake
 
 # TODO: Review the default_args and DAG configuration below and adjust any settings you think 
 # should be different for this use case. Be prepared to explain your choices.
@@ -65,8 +64,14 @@ def load_to_snowflake_task(**context):
     # Implementation here
     pass
 
+# TODO: Task 4 - Build dbt transformations
+def build_dbt_transformations(**context):
+    """Run dbt transformations."""
+    # Implementation here
+    pass
 
-# TODO: Task 4 - Data quality check
+
+# TODO: Task 5 - Data quality check
 def data_quality_check(**context):
     """Validate data quality after load."""
     # Implementation here
