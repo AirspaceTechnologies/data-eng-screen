@@ -1,4 +1,4 @@
-apache-airflow==2.6.3
+apache-airflow==3.2.0
 google-cloud-storage
 dbt-core
 dbt-snowflake==1.9.2
